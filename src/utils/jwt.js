@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken'
 import { logger } from './logger.js';
+import dotenv from 'dotenv'
 
+dotenv.config();
 export const PRIVATE_KEY = process.env.PRIVATE_KEY
 
 export const generateToken = (user) => {
+    console.log(PRIVATE_KEY)
     const token = jwt.sign({ user }, PRIVATE_KEY, { expiresIn: '12h' })
     return token
 }

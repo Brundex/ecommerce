@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import MongoStore from 'connect-mongo'
+import dotenv from 'dotenv'
 import { engine } from 'express-handlebars'
 import cookieParser from 'cookie-parser'
 import { __dirname } from './path.js'
@@ -13,6 +14,7 @@ import swaggerUiExpress from 'swagger-ui-express'
 const app = express()
 const PORT = 8000
 
+dotenv.config();
 app.use(addLogger);
 
 //Connection DB
