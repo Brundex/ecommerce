@@ -63,9 +63,12 @@ app.use(cookieParser())
 app.use(indexRouter)
 
 //Server
-const server = app.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
-})
+// Only start the server if not in Vercel (serverless) environment
+if (process.env.VERCEL !== '1') {
+    const server = app.listen(PORT, () => {
+        console.log(`Server on port ${PORT}`)
+    })
+}
 
 // Export app for serverless deployment (Vercel)
 export default app
