@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import MongoStore from 'connect-mongo'
@@ -11,7 +12,7 @@ import swaggerUiExpress from 'swagger-ui-express'
 
 //Configuraciones o declaraciones
 const app = express()
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 
 app.use(addLogger);
 
@@ -62,7 +63,12 @@ app.use(cookieParser())
 app.use(indexRouter)
 
 //Server
-const server = app.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
-})
+// Only start the server if not in Vercel (serverless) environment
+if (process.env.VERCEL !== '1') {
+    const server = app.listen(PORT, () => {
+        console.log(`Server on port ${PORT}`)
+    })
+}
 
+// Export app for serverless deployment (Vercel)
+export default app
