@@ -35,8 +35,10 @@ This is a comprehensive e-commerce backend application that provides a complete 
 The application follows the MVC architectural pattern:
 - **Models** (`src/models/`): Define data schemas using Mongoose (User, Product, Cart)
 - **Controllers** (`src/controllers/`): Handle business logic and request processing
-- **Views** (`src/views/`): Handlebars templates for rendering HTML
+- **Views** (`src/views/`): Handlebars templates for rendering HTML pages (login, products, cart views)
 - **Routes** (`src/routes/`): Define API endpoints and route handlers
+
+Note: This is a hybrid application that serves both rendered HTML views for the user interface and RESTful API endpoints for programmatic access.
 
 ### Repository Pattern
 Mongoose models abstract data access, providing a clean separation between the data layer and business logic.
@@ -88,7 +90,7 @@ The API includes interactive Swagger documentation available at `/apidocs` when 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Brundex/ecommerce.git
    cd ecommerce
    ```
 
@@ -103,9 +105,16 @@ The API includes interactive Swagger documentation available at `/apidocs` when 
    ```env
    MONGO_URI=mongodb://localhost:27017/ecommerce
    PRIVATE_KEY=your_jwt_secret_key
+   
+   # Optional: Email configuration for notifications
+   EMAIL_USER=your_email@example.com
+   EMAIL_PASS=your_email_password
    ```
 
-   Replace the values with your actual MongoDB connection string and a secure secret key for JWT.
+   Replace the values with:
+   - Your actual MongoDB connection string (local or MongoDB Atlas)
+   - A secure secret key for JWT token generation
+   - (Optional) SMTP email credentials for sending notifications
 
 4. **Start the application**
    ```bash
@@ -148,7 +157,7 @@ ecommerce/
 │   ├── docs/            # Swagger API documentation
 │   └── index.js         # Application entry point
 ├── package.json         # Project dependencies
-└── README.md           # Project documentation
+└── README.md            # Project documentation
 ```
 
 ## Features
